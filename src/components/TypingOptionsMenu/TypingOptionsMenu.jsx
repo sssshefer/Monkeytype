@@ -5,28 +5,24 @@ import Timer from "../Timer/Timer";
 import {getNextElem} from "../../utils/utils";
 import cl from './TypingOptionsMenu.module.css'
 import MenuButton from "../../UI/MenuButton/MenuButton";
+import {useDispatch, useSelector} from "react-redux";
 
-const TypingOptionsMenu = ({timerState}) => {
+const TypingOptionsMenu = () => {
+    const dispatch = useDispatch();
+
+
     const languages = ['en', 'fi', 'es'];
-
     const [currentLanguage, setCurrentLanguage] = useState('en');
 
     const [showTimer, setShowTimer] = useState(true);
-    const [timerIsOn, setTimerIsOn] = useState(false);
     const [duration, setDuration] = useState(30 * 1000);
-useEffect(()=>{
-    setTimerIsOn(timerState)
-},[timerState])
 
-    const turnOffTimerIsOn = () => {
-        setTimerIsOn(false);
-    }
     const changeLanguage = () => {
         const nextLanguage = getNextElem(languages, currentLanguage);
         setCurrentLanguage(nextLanguage);
     }
 
-    const changeDuration = (duration) =>{
+    const changeDuration = (duration) => {
         setDuration(duration)
     }
     return (
@@ -36,8 +32,7 @@ useEffect(()=>{
                     <div className="col-12 d-flex justify-content-center">
                         <div className={cl.options}>
                             {showTimer &&
-                            <Timer timerIsOn={timerIsOn}
-                                   duration={duration}/>}
+                            <Timer duration={duration}/>}
 
                             <DurationButtons changeDuration={changeDuration}/>
                         </div>

@@ -1,20 +1,25 @@
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {startTimerAction, stopTimerAction} from "../store/timerReducer";
 
 let interval;
 let timer;
-export const useTimer = (timerIsOn, duration) => {
+export const useTimer = ( duration) => {
+    const dispatch = useDispatch();
+    const timerIsActive = useSelector(state=>state.timer.timerIsActive);
+
     const [currentTimerValueSec, setCurrentTimerValueSec] = useState(duration / 1000);
     const clearTimer = () => {
         setCurrentTimerValueSec(duration / 1000);
     }
     useEffect(() => {
-        if (timerIsOn) {
+        if (timerIsActive) {
             clearTimer()
-            startTimer(duration);
+            startTimer(duration)
         } else {
-            stopTimer();
+            stopTimer()
         }
-    }, [timerIsOn])
+    }, [timerIsActive])
     useEffect(() => {
         setCurrentTimerValueSec(duration/1000);
         stopTimer();

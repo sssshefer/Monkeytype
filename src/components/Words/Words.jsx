@@ -6,9 +6,13 @@ import {useCaret} from "../../hooks/useCaret";
 import {useAutoScroll} from "../../hooks/useAutoScroll";
 import {useKeyboardListener} from "../../hooks/useKeyboardListener";
 import Caret from "../Caret/Caret";
+import {useDispatch, useSelector} from "react-redux";
+import {startTimerAction, stopTimerAction} from "../../store/timerReducer";
 
 
-const Words = ({words, changeIsTyping}) => {
+const Words = ({words}) => {
+    const dispatch = useDispatch();
+
     const [wordsString, setWordsString] = useState('');
 
     const caretElem = useRef();
@@ -21,7 +25,7 @@ const Words = ({words, changeIsTyping}) => {
 
     useEffect(() => {
         if (keyboardCapturer.currentLetterId === 1) {
-            changeIsTyping();
+           dispatch(startTimerAction())
         }
     }, [keyboardCapturer.currentLetterId])
 
