@@ -1,8 +1,12 @@
 import {useEffect} from "react";
 
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
 
-export const useAutoScroll = (caretY, caret, wordsElem) => {
+export const useAutoScroll = ( caret, wordsElem) => {
+    const dispatch = useDispatch();
+    const caretY = useSelector(state=>state.caretY.caretY)
+
     useEffect(() => {
         if(caret.current){
             caret.current.style.top = 7 + caretY + 'px';

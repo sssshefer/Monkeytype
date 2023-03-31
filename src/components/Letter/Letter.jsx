@@ -1,36 +1,38 @@
 import React, {useEffect, useRef, useState} from 'react';
 import cl from './Letter.module.css'
+import {useDispatch, useSelector} from "react-redux";
+import {setCaretX, setCaretY} from "../../store/caretReducer";
 
-const Letter = ({id, children, currentId, currentLetterState, changeCaretLeft, changeCaretTop, ...props}) => {
-    const letterElem = useRef();
+const Letter = ({id, children}) => {
+    const dispatch = useDispatch();
+    const currentLetterId = useSelector(state=>state.currentLetterId.currentLetterId)
+    const currentLetterState = useSelector(state=>state.currentLetterState.currentLetterState)
 
     const [posX, setPosX] = useState(0);
     const [posY, setPosY] = useState(0);
-    const [letterState, setLetterState] = useState('untyped');
-
+    const letterElem = useRef();
     useEffect(() => {
         setPosX(letterElem.current.offsetLeft);
         setPosY(letterElem.current.offsetTop);
     }, [letterElem])
 
+    const [letterState, setLetterState] = useState('untyped');
     useEffect(() => {
         if (id === 0) {
-            setLetterState ('untyped');
+            setLetterState('untyped')
         }
-        if (id < currentId) {
-            setLetterState('correct');
+        if (id < currentLetterId) {
+            setLetterState('correct')
         }
-        if (id === currentId) {
+        if (id === currentLetterId) {
             setLetterState(currentLetterState);
-            changeCaretLeft(posX)
-            changeCaretTop(posY)
+            dispatch(setCaretX(posX))
+            dispatch(setCaretY(posY))
         }
-
-
-    }, [currentId, currentLetterState])
+    }, [currentLetterId, currentLetterState])
 
     return (
-        <div ref={letterElem} {...props} className={`${cl[letterState]}`}>
+        <div ref={letterElem} className={`${cl[letterState]}`}>
             {children}
         </div>
     );

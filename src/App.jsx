@@ -10,7 +10,6 @@ import ReloadButton from "./UI/ReloadButton/ReloadButton";
 import {useFetching} from "./hooks/useFetching";
 import Loader from "./UI/Loader/Loader";
 import {useDispatch, useSelector} from "react-redux";
-import {addCashAction} from "./store/cashReducer";
 
 
 function App() {

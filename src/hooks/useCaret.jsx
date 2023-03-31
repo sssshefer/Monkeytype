@@ -1,8 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setCaretX, setCaretY} from "../store/caretReducer";
 
 export const useCaret = (caretElem) => {
-    const [caretX, setCaretX] = useState(0)
-    const [caretY, setCaretY] = useState(8)
+    const dispatch = useDispatch();
+    const caretX = useSelector(state=>state.caretX.caretX)
+    const caretY = useSelector(state=>state.caretY.caretY)
 
 
     useEffect(() => {
@@ -11,14 +14,5 @@ export const useCaret = (caretElem) => {
         }
 
     }, [caretX])
-
-    const changeCaretTop = (top) => {
-        setCaretY(top)
-    }
-    const changeCaretLeft = (left) => {
-        setCaretX(left)
-    }
-
-    return {caretX, caretY, changeCaretLeft, changeCaretTop};
 };
 

@@ -8,31 +8,33 @@ import {useKeyboardListener} from "../../hooks/useKeyboardListener";
 import Caret from "../Caret/Caret";
 import {useDispatch, useSelector} from "react-redux";
 import {startTimerAction, stopTimerAction} from "../../store/timerReducer";
+import {setNullAction} from "../../store/currentLetterReducer";
 
 
 const Words = ({words}) => {
     const dispatch = useDispatch();
+    const currentLetterId = useSelector(state=>state.currentLetterId.currentLetterId)
 
     const [wordsString, setWordsString] = useState('');
 
     const caretElem = useRef();
     const wordsElem = useRef();
-    const caret = useCaret(caretElem);
+    useCaret(caretElem);
 
-    useAutoScroll(caret.caretY, caretElem, wordsElem);
+    useAutoScroll(caretElem, wordsElem);
 
-    const keyboardCapturer = useKeyboardListener(wordsString);
+    useKeyboardListener(wordsString);
 
     useEffect(() => {
-        if (keyboardCapturer.currentLetterId === 1) {
+        if (currentLetterId === 1) {
            dispatch(startTimerAction())
         }
-    }, [keyboardCapturer.currentLetterId])
+    }, [currentLetterId])
 
 
     useEffect(() => {
         setWordsString(words.join(' '));
-        keyboardCapturer.setCurrentLetterId(0);
+        dispatch(setNullAction())
         wordsElem.current.style.top = 0;
     }, [words])
 
@@ -48,13 +50,7 @@ const Words = ({words}) => {
                         i += String.fromCharCode(spaceUniCodeNum);
                         console.log()
                         return <div className='d-flex' key={i}>
-                            <Word word={i} startId={startId} setNextLetter={keyboardCapturer.setNextLetter}
-                                  currentId={keyboardCapturer.currentLetterId}
-                                  currentLetterState={keyboardCapturer.currentLetterState}
-                                  changeCaretTop={caret.changeCaretTop}
-                                  changeCaretLeft={caret.changeCaretLeft}/>
-
-
+                            <Word word={i} startId={startId}/>
                         </div>
                     }
                 )}

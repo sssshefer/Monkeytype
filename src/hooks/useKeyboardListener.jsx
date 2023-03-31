@@ -1,20 +1,23 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {setNextIdAction} from "../store/currentLetterReducer";
+import {
+    setCurrentLetterIncorrectAction,
+    setCurrentLetterUntypedAction,
+} from "../store/currentLetterReducer";
 
 export const useKeyboardListener = (wordsString) => {
-    const [currentLetterId, setCurrentLetterId] = useState(0);
-    const [currentLetterState, setCurrentLetterState] = useState('untyped');
-    const setNextLetter = () => {
-        setCurrentLetterId(currentTimerValueSec => currentTimerValueSec + 1)
-    }
+    const dispatch = useDispatch();
+    const currentLetterId = useSelector(state=>state.currentLetterId.currentLetterId)
     useEffect(() => {
         const handleTyping = (event) => {
             event.Handle = true;
             if (event.key === wordsString[currentLetterId]) {
-                setCurrentLetterState('untyped')
-                setNextLetter();
+                dispatch(setCurrentLetterUntypedAction());
+                dispatch(setNextIdAction());
             }
             if (event.key !== wordsString[currentLetterId]) {
-                setCurrentLetterState('incorrect')
+                dispatch(setCurrentLetterIncorrectAction());
             }
 
         }
@@ -22,5 +25,4 @@ export const useKeyboardListener = (wordsString) => {
 
         return () => document.removeEventListener('keydown', handleTyping)
     }, [wordsString, currentLetterId])
-    return ({currentLetterId, currentLetterState, setCurrentLetterId, setNextLetter})
 };
