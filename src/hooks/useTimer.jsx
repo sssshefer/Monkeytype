@@ -17,7 +17,8 @@ export const useTimer = ( duration) => {
             clearTimer()
             startTimer(duration)
         } else {
-            stopTimer()
+            stopTimer();
+            setCurrentTimerValueSec(duration/1000)
         }
     }, [timerIsActive])
     useEffect(() => {

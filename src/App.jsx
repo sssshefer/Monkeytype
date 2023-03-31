@@ -6,14 +6,13 @@ import Words from "./components/Words/Words";
 import WordService from "./API/WordService";
 import {useEffect, useState} from "react";
 import {ArrowClockwise} from 'react-bootstrap-icons';
-import ReloadButton from "./UI/ReloadButton/ReloadButton";
+import ReloadButton from "./components/ReloadButton/ReloadButton";
 import {useFetching} from "./hooks/useFetching";
 import Loader from "./UI/Loader/Loader";
 import {useDispatch, useSelector} from "react-redux";
 
 
 function App() {
-    const dispatch = useDispatch();
 
     const [words, setWords] = useState([]);
     const [fetchWords, isWordsLoading, wordError] = useFetching(async (limit) => {
@@ -23,7 +22,6 @@ function App() {
 
     useEffect(() => {
         fetchWords(50)
-
     }, [])
 
     return (
@@ -34,7 +32,7 @@ function App() {
                 {isWordsLoading && <Loader style={{top: '42%', left: '47.5%'}}/>}
                 <div>
                     <Words  words={words} className={isWordsLoading && 'fade'}/>
-                    <ReloadButton onClick={() => fetchWords(50)}/>
+                    <ReloadButton fetchWords={ fetchWords}/>
                 </div>
             </div>
         </div>

@@ -6,3 +6,4 @@ export const getNextElem = (array, elem) => {
         return array[currentIndex + 1]
     }
 }
+
