@@ -1,0 +1,9 @@
+.caret {
+    height:1.5em  ;
+    width: 0.1em;
+    background: #e2b714;
+    position: absolute;
+    top: 8px;
+    left: 0;
+    transition: 0.1s;
+}

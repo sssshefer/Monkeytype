@@ -1,0 +1,16 @@
+.wordsWrap{
+    width: 80%;
+    margin: auto;
+
+    height: 156px;
+    overflow: hidden;
+    position: relative;
+}
+#words {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    top:0;
+    letter-spacing: 0.08rem;
+}

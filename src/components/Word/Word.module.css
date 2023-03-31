@@ -1,0 +1,6 @@
+.word{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.6rem;
+    height: 40px;
+}
