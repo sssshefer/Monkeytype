@@ -1,8 +1,33 @@
-.wrap   {
-
+.wrap {
+    border-left: 2px solid mediumslateblue;
+    padding: 0 5px;
+    height: 34px;
+    width: 124px;
+    overflow: hidden;
+    position: relative;
+    transition: all .7s;
 }
-.wrap button{
+
+.buttons {
+    transition: all .7s;
+    opacity:1;
+    transform: translateX(0%);
+}
+
+.wrap button {
     background-color: transparent;
     border: 0;
-    padding:5px;
+    padding: 5px;
 }
+
+.buttonsHide {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.buttonsWrapHide {
+    width: 0;
+    padding:0;
+    border:0;
+}
+

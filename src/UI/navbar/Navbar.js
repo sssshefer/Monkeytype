@@ -6,7 +6,7 @@ const Navbar = ({logoText}) => {
             <div className="container">
                 <div className="row">
                     <div className="col-6 m-auto">
-                        <div className="logo">{logoText}</div>
+                        <div className={cl.logo}>{logoText}</div>
                     </div>
                 </div>
             </div>

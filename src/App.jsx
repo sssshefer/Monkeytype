@@ -10,10 +10,12 @@ import ReloadButton from "./components/ReloadButton/ReloadButton";
 import {useFetching} from "./hooks/useFetching";
 import Loader from "./UI/Loader/Loader";
 import {useDispatch, useSelector} from "react-redux";
+import SpeedInfo from "./components/SpeedInfo/SpeedInfo";
 
 
 function App() {
-
+    const dispatch = useDispatch();
+    const timerIsCompleted = useSelector(state=>state.timerIsCompleted.timerIsCompleted);
     const [words, setWords] = useState([]);
     const [fetchWords, isWordsLoading, wordError] = useFetching(async (limit) => {
         const response = await WordService.getRandomWords(limit);
@@ -27,14 +29,17 @@ function App() {
     return (
         <div className="App">
             <Navbar logoText={'Monkeytype'}/>
-            <div className="typing">
-                <TypingOptionsMenu />
-                {isWordsLoading && <Loader style={{top: '42%', left: '47.5%'}}/>}
-                <div>
-                    <Words  words={words} className={isWordsLoading && 'fade'}/>
-                    <ReloadButton fetchWords={ fetchWords}/>
+            {timerIsCompleted?
+            <SpeedInfo/>
+                :<div className="typing">
+                    <TypingOptionsMenu />
+                    {isWordsLoading && <Loader />}
+                    <div>
+                        <Words  words={words} className={isWordsLoading && 'fade'}/>
+                        <ReloadButton fetchWords={ fetchWords}/>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     );
 }

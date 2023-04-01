@@ -1,13 +1,18 @@
-const defaultState = {
+const timerIsCompletedDefaultState = {
+    timerIsCompleted: false,
+}
+const timerIsActiveDefaultState = {
     timerIsActive: false,
 }
 
 const ActionTypes = {
     START_TIMER: "START_TIMER",
     STOP_TIMER: "STOP_TIMER",
+    SET_IS_COMPLETED_TRUE: "SET_IS_COMPLETED_TRUE",
+    SET_IS_COMPLETED_FALSE: "SET_IS_COMPLETED_FALSE",
 };
 
-export const timerIsActive = (state = defaultState, action) => {
+export const timerIsActive = (state = timerIsActiveDefaultState, action) => {
     switch (action.type) {
         case ActionTypes.START_TIMER:
             return {...state, timerIsActive: true}
@@ -18,5 +23,19 @@ export const timerIsActive = (state = defaultState, action) => {
     }
 }
 
+export const timerIsCompleted = (state = timerIsCompletedDefaultState, action) => {
+    switch (action.type) {
+        case ActionTypes.SET_IS_COMPLETED_TRUE:
+            return {...state, timerIsCompleted: true}
+        case ActionTypes.SET_IS_COMPLETED_FALSE:
+            return {...state, timerIsCompleted: false}
+        default:
+            return state;
+    }
+}
+
 export const startTimerAction = () => ({type: ActionTypes.START_TIMER})
 export const stopTimerAction = () => ({type: ActionTypes.STOP_TIMER})
+
+export const setTimerIsCompletedTrueAction = () => ({type: ActionTypes.SET_IS_COMPLETED_TRUE})
+export const setTimerIsCompletedFalseAction = () => ({type: ActionTypes.SET_IS_COMPLETED_FALSE})

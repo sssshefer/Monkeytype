@@ -3,7 +3,7 @@ import {ArrowClockwise} from "react-bootstrap-icons";
 import cl from './ReloadButton.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {setNullAction} from "../../store/currentLetterReducer";
-import {stopTimerAction} from "../../store/timerReducer";
+import {setTimerIsCompletedFalseAction, stopTimerAction} from "../../store/timerReducer";
 
 const ReloadButton = ({fetchWords}) => {
     const reloadBtn = useRef();
@@ -19,6 +19,7 @@ const ReloadButton = ({fetchWords}) => {
         fetchWords(50);
         dispatch(setNullAction())
         dispatch(stopTimerAction())
+        dispatch(setTimerIsCompletedFalseAction());
     }
     return (
         <button ref={reloadBtn} onClick={refreshTyping} className={cl.restartBtn}>

@@ -1,6 +1,6 @@
 .timerValue{
-    margin-right:5px;
-    border-right:2px solid mediumslateblue;
     padding:0 8px;
     width: 36px;
+    height:24px;
+    transition: all 0.3s;
 }

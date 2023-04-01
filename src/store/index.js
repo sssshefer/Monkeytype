@@ -1,11 +1,12 @@
 import {combineReducers, createStore} from "redux";
-import {timerIsActive} from "./timerReducer";
+import {timerIsActive, timerIsCompleted} from "./timerReducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import { currentLetterId,currentLetterState} from "./currentLetterReducer";
 import {caretX, caretY} from "./caretReducer";
 
 const rootReducer = combineReducers({
-    timer: timerIsActive,
+    timerIsActive: timerIsActive,
+    timerIsCompleted: timerIsCompleted,
     currentLetterId: currentLetterId,
     currentLetterState: currentLetterState,
     caretX:caretX,
