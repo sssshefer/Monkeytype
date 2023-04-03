@@ -1,0 +1,29 @@
+.wrap{
+    margin-top:100px;
+    padding:0 30%
+}
+.wrap *{
+    font-family: Century Gothic, sans-serif;
+}
+.lettersPerMinuteTitle{
+    text-align: left;
+    font-size: 2rem;
+    color:#cecece;
+}
+
+.a4,.wordsPerMinute{
+    margin:100px 0 0;
+    color:#cecece;
+
+}
+
+.a4{
+    text-align: right;
+}
+
+.wordsPerMinute{
+    text-align: left;
+}
+
+
+

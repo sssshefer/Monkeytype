@@ -12,16 +12,13 @@ const TypingOptionsMenu = () => {
     const [currentLanguage, setCurrentLanguage] = useState('en');
 
     const [showTimer, setShowTimer] = useState(true);
-    const [duration, setDuration] = useState(30 * 1000);
 
     /*const changeLanguage = () => {
         const nextLanguage = getNextElem(languages, currentLanguage);
         setCurrentLanguage(nextLanguage);
     }*/
 
-    const changeDuration = (duration) => {
-        setDuration(duration)
-    }
+
 
     return (
         <div className={cl.menu}>
@@ -30,8 +27,8 @@ const TypingOptionsMenu = () => {
                     <div className="col-12 d-flex justify-content-center">
                         <div className={cl.options}>
                             {showTimer &&
-                            <Timer duration={duration}/>}
-                            <DurationButtons changeDuration={changeDuration}/>
+                            <Timer />}
+                            <DurationButtons />
 
                         </div>
                     </div>

@@ -1,6 +1,6 @@
 const defaultState = {
     caretX: 0,
-    caretY:8,
+    caretY:0,
 }
 
 const ActionTypes = {

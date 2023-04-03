@@ -14,7 +14,6 @@ import SpeedInfo from "./components/SpeedInfo/SpeedInfo";
 
 
 function App() {
-    const dispatch = useDispatch();
     const timerIsCompleted = useSelector(state=>state.timerIsCompleted.timerIsCompleted);
     const [words, setWords] = useState([]);
     const [fetchWords, isWordsLoading, wordError] = useFetching(async (limit) => {
@@ -24,7 +23,7 @@ function App() {
 
     useEffect(() => {
         fetchWords(50)
-    }, [])
+    }, [timerIsCompleted])
 
     return (
         <div className="App">

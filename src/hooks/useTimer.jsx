@@ -8,10 +8,10 @@ import {
 
 let interval;
 let timer;
-export const useTimer = ( duration) => {
+export const useTimer = () => {
     const dispatch = useDispatch();
     const timerIsActive = useSelector(state=>state.timerIsActive.timerIsActive);
-    const timerIsCompleted = useSelector(state=>state.timerIsCompleted.timerIsCompleted);
+    const duration = useSelector(state=>state.timerDuration.timerDuration);
 
     const [currentTimerValueSec, setCurrentTimerValueSec] = useState(duration / 1000);
     const clearTimer = () => {

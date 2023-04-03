@@ -1,0 +1,19 @@
+.buttonWrap {
+    width: 50%;
+    margin-top: 40px;
+    margin-left: auto;
+    text-align: center;
+}
+
+.button {
+    padding: 20px 40px;
+    margin: 0;
+    color: #cecece;
+    font-size: 1.4rem;
+    background: transparent;
+    border-color: mediumslateblue;
+}
+
+button:hover {
+    border-width: 3px;
+}

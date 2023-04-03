@@ -1,8 +1,11 @@
 import {useTimer} from "../../hooks/useTimer";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import cl from './Timer.module.css'
-const Timer = ({duration}) => {
-   const currentTimerValue = useTimer(duration);
+import {useDispatch} from "react-redux";
+import {setTimerDuration} from "../../store/timerReducer";
+
+const Timer = () => {
+   const currentTimerValue = useTimer();
     return (
         <div className={cl.timerValue}>
             {currentTimerValue}
